@@ -19,7 +19,9 @@ jobs:
           repositories: ooRexx
 
       - name: Install git-svn
-        run: sudo apt-get install -y git-svn
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git-svn
 
       - name: Clone mirror repo
         run: git clone --bare https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/ooRexx/ooRexx.git repo
