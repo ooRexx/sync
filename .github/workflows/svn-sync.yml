@@ -36,7 +36,7 @@ jobs:
       - name: Configure git-svn
         working-directory: repo
         run: |
-          git svn init https://svn.code.sf.net/p/oorexx/code-0/
+          git config svn-remote.svn.url https://svn.code.sf.net/p/oorexx/code-0
           git config svn-remote.svn.fetch main/trunk:refs/remotes/git-svn
           git update-ref refs/remotes/git-svn refs/heads/master
 
