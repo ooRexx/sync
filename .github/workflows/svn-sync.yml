@@ -8,6 +8,9 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    # Run in a pinned distro container so git and git-svn come from the same
+    # archive and always match, independent of the runner image's git.
+    container: ubuntu:24.04
     steps:
       - name: Generate token
         id: app-token
@@ -20,9 +23,8 @@ jobs:
 
       - name: Install git-svn
         run: |
-          sudo add-apt-repository -y ppa:git-core/ppa
-          sudo apt-get update
-          sudo apt-get install -y git-svn
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates git git-svn zstd
 
       - name: Clone mirror repo
         run: git clone --bare https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/ooRexx/ooRexx.git repo
