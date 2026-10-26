@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # Run in a pinned distro container so git and git-svn come from the same
     # archive and always match, independent of the runner image's git.
-    container: ubuntu:24.04
+    container: ubuntu:26.04
     steps:
       - name: Generate token
         id: app-token
